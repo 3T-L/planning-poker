@@ -1,0 +1,16 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+dist
+.husky
+.github
+.changeset
+.vscode
+**/node_modules
+**/dist
+**/.turbo
+**/.wireit
+**/.next
+**/styled-system
+**/storybook-static

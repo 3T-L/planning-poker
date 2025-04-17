@@ -1,0 +1,31 @@
+name: Lint # name of the action (displayed in the github interface)
+
+on: # event list
+  push: # on a push request
+    branches: # on the following branches
+      - master
+
+env: # environment variables (available in any part of the action)
+  NODE_VERSION: 20
+
+jobs: # list of things to do
+  linting:
+    name: Linting # job name (unique id)
+    runs-on: ubuntu-latest # on which machine to run
+    steps: # list of steps
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Code Linting
+        run: pnpm run lint

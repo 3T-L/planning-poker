@@ -1,0 +1,35 @@
+name: Test and Deploy APPS to GKE
+
+on:
+  workflow_run:
+    workflows: ['Lint']
+    types:
+      - completed
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: fluent-edition-425006-v1
+  GAR_LOCATION: asia-southeast1
+  SERVICE: demo-service
+  REGION: asia-southeast1
+  REPOSITORY: demo-repo-registry
+  CLUSTER: demo-cluster
+jobs:
+  deploy:
+    # Add 'id-token' with the intended permissions for workload identity federation
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Google Auth
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
+          service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' # e.g. - my-service-account@my-project.iam.gserviceaccount.com

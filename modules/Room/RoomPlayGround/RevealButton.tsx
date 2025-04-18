@@ -29,7 +29,7 @@ export const RevealButton: FC<RevealButtonProps> = ({ roomData }) => {
       participants: Object.fromEntries(
         Object.entries(participants).map(([key, participant]) => [
           key,
-          { ...participant, vote: '' },
+          { ...participant, id: key, vote: '' },
         ]),
       ),
     };

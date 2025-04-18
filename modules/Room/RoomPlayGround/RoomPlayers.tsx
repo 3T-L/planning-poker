@@ -1,4 +1,4 @@
-import { Avatar, Flex, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import classNames from 'classNames';
 import { useUser } from 'modules/User';
 import { FC, PropsWithChildren } from 'react';
@@ -15,7 +15,7 @@ export const RoomPlayers: FC<PropsWithChildren<RoomPlayersProps>> = ({
   revealed,
   children,
 }) => {
-  const participantsData = Object.values(participants);
+  const participantsData = Object.values(participants).filter(Boolean);
   const isRoomHasOneParticipant = participantsData.length === 1;
   const halfOfParticipants = Math.ceil(participantsData.length / 2);
 
@@ -86,15 +86,9 @@ const Player: FC<{
       >
         <div className="back"></div>
         <div className="front">
-          {revealed ? (
-            <Text fontSize={'4xl'} margin={'auto'} fontWeight={'bold'}>
-              {participant.vote || '--'}
-            </Text>
-          ) : (
-            <Avatar.Root>
-              <Avatar.Fallback name={userData?.displayName} />
-            </Avatar.Root>
-          )}
+          <Text fontSize={'4xl'} margin={'auto'} fontWeight={'bold'}>
+            {participant.vote || '--'}
+          </Text>
         </div>
       </div>
       <Text fontWeight={'light'} fontSize={'md'}>

@@ -1,4 +1,4 @@
-import { Card, Flex, Spinner, Text } from '@chakra-ui/react';
+import { Button, Flex, Spinner, Text } from '@chakra-ui/react';
 
 import { useConfig } from 'modules/Config/hook';
 import { SessionType } from 'services';
@@ -43,22 +43,24 @@ const InnerCardsGroup = ({ roomId, userId, participants }: CardsGroupProps) => {
         {data.cards.map((card) => {
           const isSelected = myRecord?.vote === card;
           return (
-            <Card.Root
+            <Button
               key={`poker-card-${card}`}
               onClick={handleCardSelect(card)}
               flexGrow={0}
               style={{
                 border: isSelected ? '3px solid var(--darkCardBg)' : undefined,
               }}
+              display={'flex'}
+              justifyContent={'center'}
+              alignItems={'center'}
+              minWidth={'60px'}
+              minHeight={'80px'}
+              variant={'subtle'}
+              outlineColor={'var(--lightCardBg)'}
+              outlineOffset={0}
             >
-              <Card.Body
-                minWidth={'60px'}
-                minHeight={'80px'}
-                width={'fit-content'}
-              >
-                <Text margin={'auto'}>{card}</Text>
-              </Card.Body>
-            </Card.Root>
+              <Text margin={'auto'}>{card}</Text>
+            </Button>
           );
         })}
       </Flex>

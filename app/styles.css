@@ -1,15 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
 
 :root {
-  --darkCardBg: #0855b9;
-  --lightCardBg: #2f80ed;
-  --darkCardBg50: #0855b950;
-  --lightCardBg50: #2f80ed50;
+  --darkCardBg: #bd0f72;
+  --lightCardBg: #dc7fb4;
+  --darkCardBg50: #bd0f7250;
+  --lightCardBg50: #dc7fb450;
   --navHeight: 80px;
-  --bgColor: rgb(238, 238, 238);
+  --bgColor: #f3f3fa;
 }
 
 /*
@@ -34,6 +31,7 @@
 html,
 body {
   min-height: 100%;
+  font-family: 'Poppins', 'Courier New', Courier, monospace;
 }
 
 /*

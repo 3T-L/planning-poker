@@ -1,7 +1,8 @@
 'use client';
 
 import { Stack } from '@chakra-ui/react';
-import { ConfirmLeavingDialog, RoomPlayGround } from 'modules';
+import { BeforeUnloadAction, RoomPlayGround, useUser } from 'modules';
+import { useLeaveRoom } from 'modules/Room/hooks';
 import { use } from 'react';
 
 interface PageProps {
@@ -12,6 +13,9 @@ interface PageProps {
 
 const Store = ({ params }: PageProps) => {
   const { id } = use(params);
+  const { data: userData } = useUser();
+  const { upsert: leaveRoom } = useLeaveRoom();
+
   return (
     <>
       <Stack
@@ -23,9 +27,13 @@ const Store = ({ params }: PageProps) => {
         marginBlockEnd={32}
         alignItems={'center'}
       >
-        <RoomPlayGround id={id.toString()} />
+        <RoomPlayGround id={id.toString()} userData={userData} />
+        <BeforeUnloadAction
+          onBeforeUnload={() => {
+            leaveRoom({ roomId: id, userId: userData?.id ?? '' });
+          }}
+        />
       </Stack>
-      <ConfirmLeavingDialog />
     </>
   );
 };

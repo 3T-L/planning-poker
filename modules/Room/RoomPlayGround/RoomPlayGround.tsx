@@ -1,6 +1,8 @@
+'use client';
+
 import { Spinner, Stack, Text } from '@chakra-ui/react';
-import { useUser } from 'modules/User';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { UserType } from 'services';
 import { useJoinRoom, useRoomInfo } from '../hooks';
 import { CardsGroup } from './CardsGroup';
 import { RevealButton } from './RevealButton';
@@ -8,12 +10,15 @@ import { RoomPlayers } from './RoomPlayers';
 
 type RoomPlayGroundProps = {
   id: string;
+  userData?: UserType;
 };
 
-export const RoomPlayGround = ({ id }: RoomPlayGroundProps) => {
+export const RoomPlayGround = ({ id, userData }: RoomPlayGroundProps) => {
   const { data } = useRoomInfo({ id });
-  const { data: userData } = useUser();
   const { upsert: joinRoom } = useJoinRoom();
+
+  // This is used to prevent calling the joinRoom when user leaving room
+  const calledJoinRoomRef = useRef(false);
 
   useEffect(() => {
     if (!userData) {
@@ -23,8 +28,14 @@ export const RoomPlayGround = ({ id }: RoomPlayGroundProps) => {
       return;
     }
     const isUserInRoom = Boolean(data.participants?.[userData.id]);
-    if (!isUserInRoom) {
+    // Check if the user is already in the room
+    if (!isUserInRoom && !calledJoinRoomRef.current) {
       joinRoom({ roomId: id, userId: userData.id });
+      calledJoinRoomRef.current = true;
+      return;
+    }
+    if (isUserInRoom) {
+      calledJoinRoomRef.current = true;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, userData]);

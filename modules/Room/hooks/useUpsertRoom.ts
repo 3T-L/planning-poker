@@ -1,8 +1,12 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { generateUUID } from 'hooks';
-import { upsertSession } from 'services';
+import { generateShortID } from 'hooks';
+import { SessionType, upsertSession } from 'services';
 
-type CreateRoomPayload = { name: string; id?: string };
+type CreateRoomPayload = {
+  name: string;
+  id?: string;
+  participants?: SessionType['participants'];
+};
 
 export const useUpsertRoom = (
   options?: UseMutationOptions<CreateRoomPayload, Error, CreateRoomPayload>,
@@ -12,11 +16,11 @@ export const useUpsertRoom = (
     Error,
     CreateRoomPayload
   >({
-    mutationFn: async ({ id, name }) => {
+    mutationFn: async ({ id, name, participants = {} }) => {
       const payload = {
         name,
-        id: id ?? generateUUID(),
-        participants: {},
+        id: id ?? generateShortID(),
+        participants,
         revealed: false,
       };
       await upsertSession(payload);

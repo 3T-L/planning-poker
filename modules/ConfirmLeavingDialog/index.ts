@@ -1,1 +1,1 @@
-export * from './ConfirmLeavingDialog';
+export * from './BeforeUnloadAction';

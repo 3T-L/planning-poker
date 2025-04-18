@@ -6,8 +6,7 @@ import { getDatabase } from 'firebase/database';
 const firebaseConfig = {
   // ...
   // The value of `databaseURL` depends on the location of the database
-  databaseURL:
-    'https://dev-planning-poker-default-rtdb.asia-southeast1.firebasedatabase.app/',
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_URL,
 };
 
 // Initialize Firebase

@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { useUser } from 'modules/User';
 import { FC, PropsWithChildren } from 'react';
 import { ParticipantType, SessionType } from 'services';

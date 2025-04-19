@@ -13,7 +13,7 @@ type CardsGroupProps = {
 
 const InnerCardsGroup = ({ roomId, userId, participants }: CardsGroupProps) => {
   const { data, isFetching } = useConfig();
-  const { upsert: vote, isPending } = useVote();
+  const { upsert: vote } = useVote();
   const myRecord = participants[userId];
   if (isFetching) return <Spinner size={'lg'} />;
 

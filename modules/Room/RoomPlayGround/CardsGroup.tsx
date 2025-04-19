@@ -58,6 +58,7 @@ const InnerCardsGroup = ({ roomId, userId, participants }: CardsGroupProps) => {
               variant={'subtle'}
               outlineColor={'var(--lightCardBg)'}
               outlineOffset={0}
+              // backgroundColor={'white'}
             >
               <Text margin={'auto'}>{card}</Text>
             </Button>

@@ -51,7 +51,7 @@ export default function RootLayout({
                 {children}
               </Container>
               <Stack
-                backgroundColor={'var(--darkCardBg)'}
+                backgroundColor={'var(--contentCardBg)'}
                 paddingBlock={16}
                 paddingInline={32}
                 gapY={6}

@@ -5,8 +5,9 @@
   --lightCardBg: #dc7fb4;
   --darkCardBg50: #bd0f7250;
   --lightCardBg50: #dc7fb450;
+  --contentCardBg: #cc4b90;
   --navHeight: 80px;
-  --bgColor: #f3f3fa;
+  --bgColor: #e2f2f1;
 }
 
 /*
@@ -31,7 +32,7 @@
 html,
 body {
   min-height: 100%;
-  font-family: 'Poppins', 'Courier New', Courier, monospace;
+  /* font-family: 'Courier New', Courier, monospace; */
 }
 
 /*

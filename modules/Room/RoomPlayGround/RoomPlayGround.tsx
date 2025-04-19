@@ -7,6 +7,7 @@ import { useJoinRoom, useRoomInfo } from '../hooks';
 import { CardsGroup } from './CardsGroup';
 import { RevealButton } from './RevealButton';
 import { RoomPlayers } from './RoomPlayers';
+import { ShareRoomModal } from './ShareRoomModal';
 
 type RoomPlayGroundProps = {
   id: string;
@@ -58,9 +59,12 @@ export const RoomPlayGround = ({ id, userData }: RoomPlayGroundProps) => {
 
   return (
     <Stack alignItems={'center'} flex={1} gap={12}>
-      <Text fontSize={'4xl'} marginBlockEnd={4} fontWeight={'bold'}>
-        {data.name}
-      </Text>
+      <Stack direction={'row'} alignItems={'center'} gap={4} marginBlockEnd={4}>
+        <Text fontSize={'4xl'} fontWeight={'bold'}>
+          {data.name}
+        </Text>
+        <ShareRoomModal roomId={id} />
+      </Stack>
       <RoomPlayers
         myId={userData.id}
         participants={data.participants ?? {}}

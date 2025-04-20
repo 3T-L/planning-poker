@@ -9,7 +9,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { CreateARoom } from 'modules';
+import { CreateARoomModal } from 'modules';
 import { useState } from 'react';
 
 export default function Page() {
@@ -27,11 +27,21 @@ export default function Page() {
       <Card.Root
         borderRadius={'2xl'}
         backgroundColor={'rgb(0, 0, 0, 0.1)'}
-        padding={4}
+        padding={2}
+        marginInline={'2'}
+        md={{
+          padding: 4,
+        }}
       >
         <Card.Body>
           <Text
-            fontSize={'7xl'}
+            fontSize={'4xl'}
+            md={{
+              fontSize: '5xl',
+            }}
+            lg={{
+              fontSize: '6xl',
+            }}
             fontWeight={'bold'}
             width={'80%'}
             lineHeight={'1.2'}
@@ -41,7 +51,13 @@ export default function Page() {
           <Text
             width={'80%'}
             marginBlockStart={4}
-            fontSize={'xl'}
+            fontSize={'md'}
+            md={{
+              fontSize: 'lg',
+            }}
+            lg={{
+              fontSize: 'xl',
+            }}
             fontWeight={'light'}
           >
             Revolutionize your team&apos;s approach with Plan Poker, designed to
@@ -62,7 +78,7 @@ export default function Page() {
         </Card.Body>
       </Card.Root>
       <Dialog.Root
-        size={'xl'}
+        size={'md'}
         open={openDialog}
         onOpenChange={({ open }) => setOpenDialog(open)}
         placement={'center'}
@@ -71,11 +87,8 @@ export default function Page() {
           <Dialog.Backdrop />
           <Dialog.Positioner>
             <Dialog.Content>
-              <Dialog.Header>
-                <Dialog.Title>Start Planning</Dialog.Title>
-              </Dialog.Header>
               <Dialog.Body>
-                <CreateARoom />
+                <CreateARoomModal />
               </Dialog.Body>
               <Dialog.CloseTrigger asChild>
                 <CloseButton size="sm" />

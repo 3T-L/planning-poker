@@ -52,22 +52,37 @@ export default function RootLayout({
               </Container>
               <Stack
                 backgroundColor={'var(--contentCardBg)'}
-                paddingBlock={16}
-                paddingInline={32}
+                paddingBlock={4}
+                paddingInline={8}
                 gapY={6}
+                lg={{ paddingBlock: 16, paddingInline: 32 }}
+                md={{ paddingBlock: 8, paddingInline: 16 }}
               >
                 <Text
-                  fontSize={'6xl'}
+                  fontSize={'4xl'}
+                  md={{
+                    fontSize: '5xl',
+                  }}
+                  lg={{
+                    fontSize: '6xl',
+                  }}
                   fontWeight={'bold'}
                   lineHeight={'1.2'}
                   color={'white'}
                   width={'80%'}
+                  textWrap={'wrap'}
                 >
                   Boost Productivity with Our Innovation
                 </Text>
                 <Text
                   width={'80%'}
-                  fontSize={'xl'}
+                  fontSize={'md'}
+                  md={{
+                    fontSize: 'lg',
+                  }}
+                  lg={{
+                    fontSize: 'xl',
+                  }}
                   fontWeight={'light'}
                   color={'white'}
                 >
@@ -95,11 +110,23 @@ export default function RootLayout({
                       width={50}
                       height={50}
                     />
-                    <Text fontSize={'2xl'} fontWeight={'bold'} color={'white'}>
+                    <Text
+                      fontSize={'md'}
+                      md={{ fontSize: 'xl' }}
+                      lg={{ fontSize: '2xl' }}
+                      fontWeight={'bold'}
+                      color={'white'}
+                    >
                       Planning Poker
                     </Text>
                   </Flex>
-                  <Text fontSize={'xl'} fontWeight={'light'} color={'white'}>
+                  <Text
+                    fontSize={'md'}
+                    md={{ fontSize: 'xl' }}
+                    lg={{ fontSize: '2xl' }}
+                    fontWeight={'light'}
+                    color={'white'}
+                  >
                     Made by Tue Truong
                   </Text>
                 </Flex>

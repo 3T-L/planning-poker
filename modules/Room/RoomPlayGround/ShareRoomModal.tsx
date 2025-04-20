@@ -45,7 +45,7 @@ export const ShareRoomModal = ({ roomId }: ShareRoomModalProps) => {
                   <Clipboard.Label textStyle="label">Share URL</Clipboard.Label>
                   <InputGroup endElement={<ClipboardIconButton />}>
                     <Clipboard.Input asChild>
-                      <Input />
+                      <Input fontSize={'md'} />
                     </Clipboard.Input>
                   </InputGroup>
                 </Clipboard.Root>

@@ -97,6 +97,7 @@ const ModalAddNewUser = ({
                   placeholder="Enter your name"
                   ref={inputRef}
                   defaultValue={data?.displayName}
+                  fontSize={'md'}
                 />
                 <Button
                   loading={isPending}

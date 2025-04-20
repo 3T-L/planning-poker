@@ -1,4 +1,13 @@
-import { Button, Input, Stack, Tabs, Text } from '@chakra-ui/react';
+import {
+  Button,
+  CloseButton,
+  Dialog,
+  Input,
+  Portal,
+  Stack,
+  Tabs,
+  Text,
+} from '@chakra-ui/react';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import { Dispatch, FC, SetStateAction, useState } from 'react';
@@ -7,52 +16,102 @@ import { useUser } from '../User';
 import { useJoinRoom, useUpsertRoom } from './hooks';
 
 export const CreateARoomModal = () => {
+  const [openDialog, setOpenDialog] = useState(false);
+
   const { data: userData } = useUser();
   const router = useRouter();
   const isHaveUserName = !!userData;
 
   if (!isHaveUserName) {
     return (
-      <Text fontWeight={'bold'} fontSize={'lg'} color={'red'}>
+      <Text
+        fontWeight={'bold'}
+        fontSize={'md'}
+        md={{
+          fontSize: 'lg',
+        }}
+        lg={{
+          fontSize: 'xl',
+        }}
+        marginBlockStart={2}
+        color={'red'}
+      >
         Please set your username first
       </Text>
     );
   }
 
   return (
-    <Stack flex={1} paddingInline={1} flexWrap={'wrap'} marginBlock={4}>
-      <Tabs.Root defaultValue="create" variant="plain">
-        <Tabs.List bg="bg.muted" rounded="l3" p="1">
-          <Tabs.Trigger
-            value="create"
-            paddingBlock={0}
-            height={'auto'}
-            lineHeight={1.4}
-            fontSize={'md'}
-            fontWeight={'bold'}
-          >
-            Create your Instant Room
-          </Tabs.Trigger>
-          <Tabs.Trigger
-            value="join"
-            paddingBlock={0}
-            height={'auto'}
-            lineHeight={1.4}
-            fontSize={'md'}
-            fontWeight={'bold'}
-          >
-            Join a Room
-          </Tabs.Trigger>
-          <Tabs.Indicator rounded="l2" />
-        </Tabs.List>
-        <Tabs.Content value="create">
-          <CreateARoomSection userData={userData} router={router} />
-        </Tabs.Content>
-        <Tabs.Content value="join">
-          <JoinARoomSection userData={userData} router={router} />
-        </Tabs.Content>
-      </Tabs.Root>
-    </Stack>
+    <>
+      <Button
+        width={'fit-content'}
+        marginBlockStart={4}
+        fontWeight={'semibold'}
+        size={'xl'}
+        onClick={() => {
+          setOpenDialog(!openDialog);
+        }}
+      >
+        START NOW
+      </Button>
+      <Dialog.Root
+        size={'md'}
+        open={openDialog}
+        onOpenChange={({ open }) => setOpenDialog(open)}
+        placement={'center'}
+      >
+        <Portal>
+          <Dialog.Backdrop />
+          <Dialog.Positioner>
+            <Dialog.Content>
+              <Dialog.Body>
+                <Stack
+                  flex={1}
+                  paddingInline={1}
+                  flexWrap={'wrap'}
+                  marginBlock={4}
+                >
+                  <Tabs.Root defaultValue="create" variant="plain">
+                    <Tabs.List bg="bg.muted" rounded="l3" p="1">
+                      <Tabs.Trigger
+                        value="create"
+                        paddingBlock={0}
+                        height={'auto'}
+                        lineHeight={1.4}
+                        fontSize={'md'}
+                        fontWeight={'bold'}
+                      >
+                        Create your Instant Room
+                      </Tabs.Trigger>
+                      <Tabs.Trigger
+                        value="join"
+                        paddingBlock={0}
+                        height={'auto'}
+                        lineHeight={1.4}
+                        fontSize={'md'}
+                        fontWeight={'bold'}
+                      >
+                        Join a Room
+                      </Tabs.Trigger>
+                      <Tabs.Indicator rounded="l2" />
+                    </Tabs.List>
+                    <Tabs.Content value="create">
+                      <CreateARoomSection userData={userData} router={router} />
+                    </Tabs.Content>
+                    <Tabs.Content value="join">
+                      <JoinARoomSection userData={userData} router={router} />
+                    </Tabs.Content>
+                  </Tabs.Root>
+                </Stack>
+              </Dialog.Body>
+              <Dialog.CloseTrigger asChild>
+                <CloseButton size="sm" />
+              </Dialog.CloseTrigger>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>
+    </>
   );
 };
 

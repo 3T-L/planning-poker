@@ -88,11 +88,22 @@ const ModalAddNewUser = ({
           <Dialog.Content marginBlock={32}>
             <Dialog.Header>
               <Text fontSize={'lg'} fontWeight={'bold'}>
-                {isUpdate ? 'Update' : 'Create'} Your Name
+                {isUpdate ? 'Update' : 'Create'} Your Profile
               </Text>
             </Dialog.Header>
             <Dialog.Body>
-              <Stack direction={'column'} gap={'1rem'} alignItems={'flex-end'}>
+              <Stack direction={'column'} gap={4} alignItems={'flex-end'}>
+                <Text
+                  fontSize={'xs'}
+                  md={{
+                    fontSize: 'sm',
+                  }}
+                  alignSelf={'flex-start'}
+                  fontWeight={'light'}
+                  marginBlockEnd={-2}
+                >
+                  Simply provide your display name.
+                </Text>
                 <Input
                   placeholder="Enter your name"
                   ref={inputRef}
@@ -127,7 +138,7 @@ const UserProfileDisplay = ({
 }) => {
   const isHaveUser = !!data;
   if (!isHaveUser) {
-    return <Button onClick={onCreate}>Create Your Name</Button>;
+    return <Button onClick={onCreate}>Create Your Profile</Button>;
   }
   return (
     <Button onClick={onUpdate} variant={'surface'}>

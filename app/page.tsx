@@ -1,19 +1,7 @@
-'use client';
-
-import {
-  Button,
-  Card,
-  CloseButton,
-  Dialog,
-  Portal,
-  Stack,
-  Text,
-} from '@chakra-ui/react';
+import { Card, Stack, Text } from '@chakra-ui/react';
 import { CreateARoomModal } from 'modules';
-import { useState } from 'react';
 
 export default function Page() {
-  const [openDialog, setOpenDialog] = useState(false);
   return (
     <Stack
       direction={'column'}
@@ -61,42 +49,12 @@ export default function Page() {
             fontWeight={'light'}
           >
             Revolutionize your team&apos;s approach with Plan Poker, designed to
-            streamline efficiency in agile project management. Join teams across
-            Vietnam in fostering collaborative, accurate estimations.
+            streamline efficiency in agile project management. Join teams
+            worldwide to promote collaborative and accurate estimations.
           </Text>
-          <Button
-            width={'fit-content'}
-            marginBlockStart={4}
-            fontWeight={'semibold'}
-            size={'xl'}
-            onClick={() => {
-              setOpenDialog(!openDialog);
-            }}
-          >
-            START NOW
-          </Button>
+          <CreateARoomModal />
         </Card.Body>
       </Card.Root>
-      <Dialog.Root
-        size={'md'}
-        open={openDialog}
-        onOpenChange={({ open }) => setOpenDialog(open)}
-        placement={'center'}
-      >
-        <Portal>
-          <Dialog.Backdrop />
-          <Dialog.Positioner>
-            <Dialog.Content>
-              <Dialog.Body>
-                <CreateARoomModal />
-              </Dialog.Body>
-              <Dialog.CloseTrigger asChild>
-                <CloseButton size="sm" />
-              </Dialog.CloseTrigger>
-            </Dialog.Content>
-          </Dialog.Positioner>
-        </Portal>
-      </Dialog.Root>
     </Stack>
   );
 }

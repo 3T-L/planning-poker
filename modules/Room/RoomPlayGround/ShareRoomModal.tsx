@@ -20,7 +20,13 @@ export const ShareRoomModal = ({ roomId }: ShareRoomModalProps) => {
   return (
     <Dialog.Root size="md" placement="center" motionPreset="slide-in-bottom">
       <Dialog.Trigger asChild>
-        <IconButton aria-label="Share Room" variant="outline" size={'sm'}>
+        <IconButton
+          aria-label="Share Room"
+          variant="outline"
+          size={'xs'}
+          // md={{ size: 'xs' }}
+          // lg={{ size: 'sm' }}
+        >
           <LuShare2 />
         </IconButton>
       </Dialog.Trigger>

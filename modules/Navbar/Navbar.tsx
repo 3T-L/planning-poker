@@ -40,8 +40,8 @@ export const Navbar = () => {
       transition={'0.2s'}
       boxShadow={
         isScrolled
-          ? '0px 2px 4px rgba(0, 0, 0, 0.1)'
-          : '0px 2px 4px rgba(0, 0, 0, 0)'
+          ? '0px 2px 6px rgba(0, 0, 0, 0.1)'
+          : '0px 2px 6px rgba(0, 0, 0, 0)'
       }
     >
       <Container
@@ -50,6 +50,7 @@ export const Navbar = () => {
         display={'flex'}
         justifyContent={'space-between'}
         alignItems={'center'}
+        paddingInline={4}
       >
         <Link href={'/'}>
           <Image
@@ -57,6 +58,7 @@ export const Navbar = () => {
             alt={'Logo'}
             width={50}
             height={50}
+            title="Home"
           />
         </Link>
         <UserProfile />

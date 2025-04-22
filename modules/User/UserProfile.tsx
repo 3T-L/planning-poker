@@ -8,7 +8,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
-import { LuUserPen } from 'react-icons/lu';
+import { LuUserPen, LuUserPlus } from 'react-icons/lu';
 import { UserType } from 'services';
 import { useUpsertUser, useUser } from './hooks';
 
@@ -138,11 +138,21 @@ const UserProfileDisplay = ({
 }) => {
   const isHaveUser = !!data;
   if (!isHaveUser) {
-    return <Button onClick={onCreate}>Create Your Profile</Button>;
+    return (
+      <Button onClick={onCreate}>
+        <Text fontSize={'md'} display={'none'} md={{ display: 'unset' }}>
+          Create Your Profile
+        </Text>
+        <LuUserPlus size={16} />
+      </Button>
+    );
   }
   return (
     <Button onClick={onUpdate} variant={'surface'}>
-      {data.displayName} <LuUserPen size={16} />
+      <Text fontSize={'md'} display={'none'} md={{ display: 'unset' }}>
+        {data.displayName}
+      </Text>
+      <LuUserPen size={16} />
     </Button>
   );
 };

@@ -59,8 +59,26 @@ export const RoomPlayGround = ({ id, userData }: RoomPlayGroundProps) => {
 
   return (
     <Stack alignItems={'center'} flex={1} gap={12}>
-      <Stack direction={'row'} alignItems={'center'} gap={4} marginBlockEnd={4}>
-        <Text fontSize={'4xl'} fontWeight={'bold'}>
+      <Stack
+        direction={'row'}
+        alignItems={'center'}
+        gap={4}
+        height={50}
+        position={'fixed'}
+        top={15}
+        zIndex={200}
+        left={'calc(max(50% - 512px, 0px) + 82px)'}
+        maxWidth={'calc(min(100%, 1024px) - 168px)'}
+      >
+        <Text
+          fontSize={'lg'}
+          md={{ fontSize: 'xl' }}
+          lg={{ fontSize: '2xl' }}
+          fontWeight={'bold'}
+          whiteSpace={'nowrap'}
+          textOverflow={'ellipsis'}
+          overflow={'hidden'}
+        >
           {data.name}
         </Text>
         <ShareRoomModal roomId={id} />

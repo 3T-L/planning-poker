@@ -73,10 +73,10 @@ const Player: FC<{
 }> = ({ userId, participant, isMe, revealed }) => {
   const { data: userData } = useUser({ id: userId });
   const isVoted = Boolean(participant.vote);
-  const displayName = isMe ? 'You' : userData?.displayName ?? 'Unknown';
+  const displayName = userData?.displayName ?? 'Unknown';
 
   return (
-    <Flex direction={'column'} gap={2} alignItems={'center'}>
+    <Flex direction={'column'} gap={1.5} alignItems={'center'}>
       <div
         className={classNames(
           'card',
@@ -86,14 +86,21 @@ const Player: FC<{
       >
         <div className="back"></div>
         <div className="front">
-          <Text fontSize={'4xl'} margin={'auto'} fontWeight={'bold'}>
+          <Text fontSize={'2xl'} margin={'auto'} fontWeight={'bold'}>
             {participant.vote || '--'}
           </Text>
         </div>
       </div>
-      <Text fontWeight={'light'} fontSize={'md'}>
-        {displayName}
-      </Text>
+      <Flex gap={1} alignItems={'center'}>
+        <Text fontWeight={''} fontSize={'sm'}>
+          {displayName}
+        </Text>
+        {isMe && (
+          <Text fontWeight={'bold'} fontSize={'sm'} color={'green.500'}>
+            • you
+          </Text>
+        )}
+      </Flex>
     </Flex>
   );
 };

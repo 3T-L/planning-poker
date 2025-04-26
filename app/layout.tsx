@@ -127,7 +127,7 @@ export default function RootLayout({
                     fontWeight={'light'}
                     color={'white'}
                   >
-                    Made by Tue Truong
+                    Made by Me
                   </Text>
                 </Flex>
               </Stack>

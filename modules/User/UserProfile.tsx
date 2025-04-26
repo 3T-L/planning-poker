@@ -7,12 +7,14 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { LuUserPen, LuUserPlus } from 'react-icons/lu';
 import { UserType } from 'services';
 import { useUpsertUser, useUser } from './hooks';
 
-export const UserProfile = () => {
+export const UserProfile: FC<{ customDisplayText?: string }> = ({
+  customDisplayText,
+}) => {
   const [open, setOpen] = useState(false);
   const { data, isFetching, refetch } = useUser();
 
@@ -23,6 +25,7 @@ export const UserProfile = () => {
           <Spinner size={'md'} />
         ) : (
           <UserProfileDisplay
+            customDisplayText={customDisplayText}
             data={data}
             onCreate={() => {
               setOpen(true);
@@ -131,14 +134,27 @@ const UserProfileDisplay = ({
   data,
   onCreate,
   onUpdate,
+  customDisplayText,
 }: {
+  customDisplayText?: string;
   data?: UserType;
   onCreate?: () => void;
   onUpdate?: () => void;
 }) => {
   const isHaveUser = !!data;
   if (!isHaveUser) {
-    return (
+    return customDisplayText ? (
+      <Button
+        onClick={onCreate}
+        fontWeight={'bold'}
+        fontSize={'lg'}
+        color={'red'}
+        variant={'plain'}
+        marginBlock={12}
+      >
+        {customDisplayText}
+      </Button>
+    ) : (
       <Button onClick={onCreate}>
         <Text fontSize={'md'} display={'none'} md={{ display: 'unset' }}>
           Create Your Profile

@@ -19,8 +19,8 @@ const Store = () => {
         minHeight={'100%'}
         width={'100%'}
         gap={12}
-        marginBlockStart={20}
-        marginBlockEnd={32}
+        marginBlockStart={6}
+        marginBlockEnd={8}
         alignItems={'center'}
       >
         <RoomPlayGround id={id.toString()} userData={userData} />

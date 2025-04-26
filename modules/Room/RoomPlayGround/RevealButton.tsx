@@ -1,4 +1,5 @@
 import { Button } from '@chakra-ui/react';
+import classNames from 'classnames';
 import { FC } from 'react';
 import { SessionType } from 'services';
 import { useReveal, useUpsertRoom } from '../hooks';
@@ -37,7 +38,16 @@ export const RevealButton: FC<RevealButtonProps> = ({ roomData }) => {
   };
 
   return (
-    <Button disabled={!hasSomeVoted} onClick={handleClick}>
+    <Button
+      disabled={!hasSomeVoted}
+      onClick={handleClick}
+      className={classNames('glow-button', {
+        'glow-button-action': hasSomeVoted || revealed,
+      })}
+      borderRadius={'md'}
+      size={'lg'}
+      fontWeight={'bold'}
+    >
       {revealed ? 'New Game' : 'Reveal Cards'}
     </Button>
   );

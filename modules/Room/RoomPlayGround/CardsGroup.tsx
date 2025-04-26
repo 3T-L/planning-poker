@@ -30,7 +30,12 @@ const InnerCardsGroup = ({ roomId, userId, participants }: CardsGroupProps) => {
   };
 
   return (
-    <Flex marginTop={'auto'} direction={'column'} marginBlockStart={12}>
+    <Flex
+      marginTop={'auto'}
+      direction={'column'}
+      marginBlockStart={4}
+      maxW={480}
+    >
       <Text textAlign={'center'} mb={2} fontWeight={'light'}>
         Choose your card 👇
       </Text>

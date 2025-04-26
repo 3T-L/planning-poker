@@ -1,6 +1,7 @@
 'use client';
 
 import { Spinner, Stack, Text } from '@chakra-ui/react';
+import { UserProfile } from 'modules/User';
 import { useEffect, useRef } from 'react';
 import { UserType } from 'services';
 import { useJoinRoom, useRoomInfo } from '../hooks';
@@ -50,15 +51,11 @@ export const RoomPlayGround = ({ id, userData }: RoomPlayGroundProps) => {
   }
 
   if (!userData) {
-    return (
-      <Text fontWeight={'bold'} fontSize={'lg'} color={'red'}>
-        Please set your username first
-      </Text>
-    );
+    return <UserProfile customDisplayText={'Please set your username first'} />;
   }
 
   return (
-    <Stack alignItems={'center'} flex={1} gap={12}>
+    <Stack alignItems={'center'} flex={1}>
       <Stack
         direction={'row'}
         alignItems={'center'}
